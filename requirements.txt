@@ -3,7 +3,6 @@ decorator==4.0.9
 dict==0.0.5
 get==0.0.7
 post==0.0.5
-public==0.0.0
 py==1.4.31
 pytest==2.9.1
 query-string==0.0.5
