@@ -3,6 +3,7 @@ import os
 import re
 import requests
 import sys
+from __future__ import print_function
 from bs4 import BeautifulSoup
 from collections import deque
 
