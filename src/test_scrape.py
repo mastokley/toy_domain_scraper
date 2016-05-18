@@ -45,9 +45,9 @@ def test_get_links(root_url, expected):
         assert expected in links
 
 
-def test_write_to_file():
-    assert False
-
-
-def test_scrape():
-    assert False
+# def test_write_to_file():
+#     assert False
+# 
+# 
+# def test_scrape():
+#     assert False
