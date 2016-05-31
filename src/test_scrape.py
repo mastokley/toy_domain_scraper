@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 BUILD_URL = [
     ('http://website.com', '/', 'http://website.com'),
@@ -23,7 +24,8 @@ BUILD_URL = [
 ]
 
 GET_LINKS = [
-    ('http://www.google.com',
+    (requests.get('http://www.google.com'),
+     'http://www.google.com',
      ['http://www.google.com/services/',
       'http://www.google.com/intl/en/about.html',
       'http://www.google.com/preferences?hl=en',
