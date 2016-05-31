@@ -37,10 +37,10 @@ def test_build_absolute_url(base, extension, expected):
     assert build_absolute_url(base, extension) == expected
 
 
-@pytest.mark.parametrize(('root_url', 'expected'), GET_LINKS)
-def test_get_links(root_url, expected):
+@pytest.mark.parametrize(('response', 'url', 'expected'), GET_LINKS)
+def test_get_links(response, url, expected):
     from scrape import get_links
-    links = [l for l in get_links(root_url)]
+    links = [l for l in get_links(response, url)]
     for expected in expected:
         assert expected in links
 
