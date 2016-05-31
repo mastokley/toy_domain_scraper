@@ -9,7 +9,7 @@ from collections import deque
 
 
 def build_absolute_url(base, extension):
-    """Return an absolute url, given a base url and a relative url."""
+    """Return an absolute url given a base url and a relative url."""
     print('\nbase:\t\t{}'.format(base))
     print('extension:\t{}'.format(extension))
     if extension == '/':
