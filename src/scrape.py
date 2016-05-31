@@ -33,21 +33,20 @@ def build_absolute_url(base, extension):
     return url
 
 
-def get_links(root_url):
+def get_links(url, response):
     """Yield links on page for given url."""
-    response = requests.get(root_url)
     soup = BeautifulSoup(response.content, 'html.parser')
     a_tags = soup.find_all('a', href=True)
     for a_tag in a_tags:
         link = a_tag['href']
-        if 'http' in link and root_url in link and '#' not in link:
+        if 'http' in link and url in link and '#' not in link:
             yield link
         elif 'http' not in link and '/' in link and '#' not in link:
             absolute_link = build_absolute_url(response.url, link)
             yield absolute_link
 
 
-def write_to_file(url):
+def write_to_file(url, response):
     """Write vanilla html file to disk for given url."""
     # TODO: deal with url forward slashes better
     # TODO: write filenames such that links in response.content work
@@ -58,7 +57,6 @@ def write_to_file(url):
                             '.html'])
         if os.path.isfile(filename):
             return print('File found: {}'.format(url))
-        response = requests.get(url)
         good_response = response.status_code // 100 in set([2, 3])
         if good_response:
             with io.open(filename, 'wb') as fh:
@@ -80,8 +78,9 @@ def scrape(root_url):
     try:
         while queue:
             cursor = queue.pop()
-            write_to_file(cursor)
-            for link in get_links(cursor):
+            response = requests.get(cursor)
+            write_to_file(cursor, response)
+            for link in get_links(cursor, response):
                 if link not in visited:
                     visited.add(link)
                     queue.appendleft(link)
