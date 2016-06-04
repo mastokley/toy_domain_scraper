@@ -1,6 +1,4 @@
-#+BEGIN_SRC markdown
-[![Build Status](https://travis-ci.org/mastokley/toy_domain_scraper.svg?branch=master)](https://travis-ci.org/mastokley/toy_domain_scraper)
-#+END_SRC
+[[https://travis-ci.org/mastokley/toy_domain_scraper][https://travis-ci.org/mastokley/toy_domain_scraper.svg]]
 
 Scraping linked pages within a given domain can be thought of as traversing a graph: the links are edges and the individual pages are nodes. For this project, I'm using [[https://en.wikipedia.org/wiki/Breadth-first_search][breadth-first traversal]]. Ideally, the script visits every node, correctly identifying previously visited nodes to avoid infinite loops, and it does so in a reasonable amount of time (whatever that might be). In that scenario it might not matter what type of traversal you used. If the script does get tangled in a loop, however, or if it can't finish traversing quickly, the breadth-first traversal is going to produce a good set of results right away for a typical website. This is why I've included the ~try...finally~ block in ~scrape()~; in the event that you need to manually end the script, you can still see which nodes were visited.
 
