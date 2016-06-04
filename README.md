@@ -1,1 +1,9 @@
 [![Build Status](https://travis-ci.org/mastokley/toy_domain_scraper.svg?branch=master)](https://travis-ci.org/mastokley/toy_domain_scraper)
+
+Scraping linked pages within a given domain can be thought of as traversing a graph: the links are edges and the individual pages are nodes. For this project, I'm using [[https://en.wikipedia.org/wiki/Breadth-first_search][breadth-first traversal]]. Ideally, the script visits every node, correctly identifying previously visited nodes to avoid infinite loops, and it does so in a reasonable amount of time (whatever that might be). In that scenario it might not matter what type of traversal you used. If the script does get tangled in a loop, however, or if it can't finish traversing quickly, the breadth-first traversal is going to produce a good set of results right away for a typical website. This is why I've included the ~try...finally~ block in ~scrape()~; in the event that you need to manually end the script, you can still see which nodes were visited.
+
+Building absolute urls out of relative urls turned out to be pretty involved. What I've written covers individual cases I encountered, as generally as possible. It's not airtight, though, so I left in the print statements (functions?) for debugging. (There may be a library out there that already does this, maybe something like os.path but for urls.)
+
+Also: Regex syntax is dense! I wish I knew of a way to make it more expressive. Reading over the expressions a week after writing them, I find myself working quite hard to decipher them.
+
+Lastly, you'll appreciate that I wrote ~get_links~ as a generator to save space in memory; I'm using a deque a save on ~.pop~ and ~.appendleft~; and that I'm using a set to save on testing membership, no matter the number of individual pages.

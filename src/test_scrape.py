@@ -1,5 +1,4 @@
 import pytest
-import requests
 
 BUILD_URL = [
     ('http://website.com', '/', 'http://website.com'),
